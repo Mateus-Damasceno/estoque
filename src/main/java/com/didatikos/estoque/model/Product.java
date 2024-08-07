@@ -1,8 +1,7 @@
-package com.didatikos.estoque.Model;
+package com.didatikos.estoque.model;
 
 
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
 
 
 @Entity

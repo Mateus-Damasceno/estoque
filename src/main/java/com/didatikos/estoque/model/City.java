@@ -1,18 +1,15 @@
-package com.didatikos.estoque.Model;
+package com.didatikos.estoque.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-
 import java.util.List;
 
 @Entity
-@Table(name = "cidade")
 public class City {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name ="city_id")
     private Long id;
 
     private String name;
