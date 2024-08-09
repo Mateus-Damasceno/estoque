@@ -1,15 +1,14 @@
 package com.didatikos.estoque.controller;
 
-
-import com.didatikos.estoque.model.Product;
+import com.didatikos.estoque.model.dto.ProductDto;
 import com.didatikos.estoque.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-
 @RestController
 @RequestMapping("/products")
 public class ProductController {
@@ -17,32 +16,28 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public List<Product> getAllProducts() {
+    public List<ProductDto> getAllProducts() {
         return productService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
-        Optional<Product> product = productService.findById(id);
+    public ResponseEntity<ProductDto> getProductById(@PathVariable Long id) {
+        Optional<ProductDto> product = productService.findById(id);
         return product.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product) {
-        return productService.save(product);
+    public ResponseEntity<ProductDto> createProduct(@RequestBody ProductDto productDto) {
+        ProductDto savedProduct = productService.save(productDto);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Product> updateProduct(@PathVariable Long id, @RequestBody Product productDetails) {
-        Optional<Product> product = productService.findById(id);
-        if (product.isPresent()) {
-            Product updatedProduct = product.get();
-            updatedProduct.setName(productDetails.getName());
-            updatedProduct.setValue(productDetails.getValue());
-            updatedProduct.setStock(productDetails.getStock());
-            updatedProduct.setCity(productDetails.getCity());
-            return ResponseEntity.ok(productService.save(updatedProduct));
-        } else {
+    public ResponseEntity<ProductDto> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDetails) {
+        try {
+            ProductDto updatedProductDto = productService.updateProduct(id, productDetails);
+            return ResponseEntity.ok(updatedProductDto);
+        } catch (Exception e) {
             return ResponseEntity.notFound().build();
         }
     }

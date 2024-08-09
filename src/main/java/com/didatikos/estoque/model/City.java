@@ -13,14 +13,19 @@ public class City {
     private Long id;
 
     private String name;
-
+    private String state;
     @OneToMany(mappedBy = "city")
     private List<Product> products;
 
-    public City(Long id, String name, List<Product> products) {
+    public City(Long id, String name, String state, List<Product> products) {
         this.id = id;
         this.name = name;
+        this.state = state;
         this.products = products;
+    }
+
+    public City() {
+
     }
 
     public Long getId() {
@@ -39,6 +44,14 @@ public class City {
         this.name = name;
     }
 
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
     public List<Product> getProducts() {
         return products;
     }
@@ -46,4 +59,6 @@ public class City {
     public void setProducts(List<Product> products) {
         this.products = products;
     }
+
+
 }
