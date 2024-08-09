@@ -1,7 +1,7 @@
 package com.didatikos.estoque.controller;
 
 
-import com.didatikos.estoque.model.City;
+import com.didatikos.estoque.model.dto.CityDto;
 import com.didatikos.estoque.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ public class CityController {
     private CityService cityService;
 
     @GetMapping
-    public List<City> getAllCities() {
+    public List<CityDto> getAllCities() {
         return cityService.findAll();
     }
 }

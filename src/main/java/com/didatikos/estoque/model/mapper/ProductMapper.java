@@ -1,0 +1,44 @@
+package com.didatikos.estoque.model.mapper;
+
+import com.didatikos.estoque.model.City;
+import com.didatikos.estoque.model.Product;
+import com.didatikos.estoque.model.dto.ProductDto;
+
+public class ProductMapper {
+
+    // Converte de Product para ProductDto
+    public static ProductDto toDto(Product product) {
+        if (product == null) {
+            return null;
+        }
+
+        String cityName = product.getCity() != null ? product.getCity().getName() : null;
+
+        return new ProductDto(
+                product.getName(),
+                product.getValue(),
+                product.getStock(),
+                cityName
+        );
+    }
+
+    // Converte de ProductDto para Product
+    public static Product toEntity(ProductDto productDto) {
+        if (productDto == null) {
+            return null;
+        }
+
+        Product product = new Product();
+        product.setName(productDto.getName());
+        product.setValue(productDto.getValue());
+        product.setStock(productDto.getStock());
+
+        if (productDto.getCityDto() != null) {
+            City city = new City();
+            city.setName(productDto.getCityDto());
+            product.setCity(city);
+        }
+
+        return product;
+    }
+}

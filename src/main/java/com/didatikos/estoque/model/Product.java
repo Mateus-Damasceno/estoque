@@ -1,6 +1,5 @@
 package com.didatikos.estoque.model;
 
-
 import jakarta.persistence.*;
 
 
@@ -17,6 +16,18 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "city_id")
     private City city;
+
+    public Product(Long id, String name, Double value, Integer stock, City city) {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+        this.stock = stock;
+        this.city = city;
+    }
+
+    public Product() {
+
+    }
 
     public Long getId() {
         return id;
