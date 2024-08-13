@@ -15,6 +15,11 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
+    @RequestMapping(value = "/{[path:[^\\.]*}")
+    public String redirect() {
+        // Redireciona todas as requisições para o index.html
+        return "forward:/index.html";
+    }
     @GetMapping
     public List<ProductDto> getAllProducts() {
         return productService.findAll();
