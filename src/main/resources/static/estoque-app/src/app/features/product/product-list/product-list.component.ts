@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'; // Certifique-se de importar ActivatedRoute
 import { ProductService } from 'src/app/core/services/product.service';
 import { ProductDto } from 'src/app/core/interfaces/product.dto';
 
@@ -8,17 +9,15 @@ import { ProductDto } from 'src/app/core/interfaces/product.dto';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  product?: ProductDto;
+  products: ProductDto[] = [];
 
   constructor(
-    private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private route: ActivatedRoute // Certifique-se de injetar ActivatedRoute
   ) {}
+
   ngOnInit(): void {
-     const id = +this.route.snapshot.paramMap.get('id');
-        this.productService.getProductById(id).subscribe(data => {
-          this.product = data;
-        });
+    this.loadProducts();
   }
 
   loadProducts(): void {
