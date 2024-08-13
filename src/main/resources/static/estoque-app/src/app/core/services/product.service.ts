@@ -7,7 +7,7 @@ import { ProductDto } from '../interfaces/product.dto';
   providedIn: 'root'
 })
 export class ProductService {
-  private baseUrl = 'http://localhost:8080/api/products';
+  private baseUrl = 'http://localhost:8080/products';
 
   constructor(private http: HttpClient) {}
 

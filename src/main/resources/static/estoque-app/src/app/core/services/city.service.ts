@@ -7,7 +7,7 @@ import { CityDto } from '../interfaces/city.dto';
   providedIn: 'root'
 })
 export class CityService {
-  private baseUrl = 'http://localhost:8080/api/cities';
+  private baseUrl = 'http://localhost:8080/cities';
 
   constructor(private http: HttpClient) {}
 
