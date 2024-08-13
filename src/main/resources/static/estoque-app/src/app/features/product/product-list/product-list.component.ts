@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router'; // Certifique-se de importar ActivatedRoute
 import { ProductService } from 'src/app/core/services/product.service';
 import { ProductDto } from 'src/app/core/interfaces/product.dto';
 
@@ -11,10 +10,7 @@ import { ProductDto } from 'src/app/core/interfaces/product.dto';
 export class ProductListComponent implements OnInit {
   products: ProductDto[] = [];
 
-  constructor(
-    private productService: ProductService,
-    private route: ActivatedRoute // Certifique-se de injetar ActivatedRoute
-  ) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.loadProducts();

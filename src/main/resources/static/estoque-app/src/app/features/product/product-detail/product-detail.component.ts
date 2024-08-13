@@ -24,7 +24,6 @@ export class ProductDetailComponent implements OnInit {
         this.product = data;
       });
     } else {
-      // Handle the case where 'id' is null
       console.error('ID parameter is null');
     }
   }
