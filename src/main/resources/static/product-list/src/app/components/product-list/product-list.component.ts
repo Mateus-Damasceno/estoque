@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // Importe o RouterModule
+import { RouterModule } from '@angular/router';
 import { ProductService } from '../../services/product.service';
 import { ProductDto } from '../../models/product.dto';
 
@@ -8,7 +8,7 @@ import { ProductDto } from '../../models/product.dto';
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   standalone: true,
-  imports: [CommonModule, RouterModule], // Adicione RouterModule aqui
+  imports: [CommonModule, RouterModule],
 })
 export class ProductListComponent implements OnInit {
   products: ProductDto[] = [];

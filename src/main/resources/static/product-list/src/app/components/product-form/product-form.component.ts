@@ -28,7 +28,7 @@ export class ProductFormComponent {
 
   createProduct(): void {
     this.productService.createProduct(this.product).subscribe(() => {
-      this.router.navigate(['/']); // Navega de volta para a lista de produtos após a criação
+      this.router.navigate(['/']);
     });
   }
 }

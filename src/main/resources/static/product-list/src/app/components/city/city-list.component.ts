@@ -5,8 +5,8 @@ import { CityDto } from '../../models/city.dto';
 
 @Component({
  selector: 'app-city-list',
-   templateUrl: './city-list.component.html',  // Caminho relativo à pasta do componente
-   styleUrls: ['./city-list.component.css'],  // Caminho relativo à pasta do componente
+   templateUrl: './city-list.component.html',
+   styleUrls: ['./city-list.component.css'],
    standalone: true,
    imports: [CommonModule],
 })

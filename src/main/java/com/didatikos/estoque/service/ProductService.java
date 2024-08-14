@@ -1,18 +1,19 @@
 package com.didatikos.estoque.service;
 
-
 import com.didatikos.estoque.model.City;
 import com.didatikos.estoque.model.Product;
 import com.didatikos.estoque.model.dto.ProductDto;
 import com.didatikos.estoque.model.mapper.ProductMapper;
 import com.didatikos.estoque.repository.CityRepository;
 import com.didatikos.estoque.repository.ProductRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
 @Service
 public class ProductService {
     @Autowired
@@ -35,15 +36,13 @@ public class ProductService {
     public ProductDto save(ProductDto productDto) {
         Product product = ProductMapper.toEntity(productDto);
 
-        // Verifica se a cidade já existe no banco de dados
+
         City city = product.getCity();
         if (city != null && city.getId() == null) {
-            // Salva a cidade se ela não estiver salva
             city = cityRepository.save(city);
             product.setCity(city);
         }
 
-        // Verifica se o produto já existe no banco de dados
         if (product.getId() != null) {
             Optional<Product> existingProductOpt = productRepository.findById(product.getId());
             if (existingProductOpt.isPresent()) {
@@ -67,10 +66,9 @@ public class ProductService {
             existingProduct.setValue(productDto.getValue());
             existingProduct.setStock(productDto.getStock());
 
-            // Verifica se a cidade já existe no banco de dados
+
             City city = existingProductOpt.get().getCity();
             if (city != null && city.getId() == null) {
-                // Salva a cidade se ela não estiver salva
                 city = cityRepository.save(city);
                 existingProduct.setCity(city);
             }
@@ -85,6 +83,5 @@ public class ProductService {
     public void deleteById(Long id) {
         productRepository.deleteById(id);
     }
-
 
 }

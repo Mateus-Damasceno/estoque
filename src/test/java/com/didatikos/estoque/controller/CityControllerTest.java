@@ -38,7 +38,7 @@ class CityControllerTest {
 
     @Test
     void testGetAllCities() throws Exception {
-        // Arrange
+
         ProductDto product1 = new ProductDto(1L, "Product1", 10.0, 100, "City1");
         ProductDto product2 = new ProductDto(2L, "Product2", 20.0, 200, "City1");
         List<ProductDto> productsCity1 = Arrays.asList(product1, product2);
@@ -54,7 +54,7 @@ class CityControllerTest {
 
         when(cityService.findAll()).thenReturn(cityList);
 
-        // Act & Assert
+
         mockMvc.perform(get("/cities")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())

@@ -6,7 +6,7 @@ import com.didatikos.estoque.model.dto.ProductDto;
 
 public class ProductMapper {
 
-    // Converte de Product para ProductDto
+
     public static ProductDto toDto(Product product) {
         if (product == null) {
             return null;
@@ -23,7 +23,6 @@ public class ProductMapper {
         );
     }
 
-    // Converte de ProductDto para Product
     public static Product toEntity(ProductDto productDto) {
         if (productDto == null) {
             return null;

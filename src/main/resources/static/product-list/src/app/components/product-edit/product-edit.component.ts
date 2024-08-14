@@ -46,7 +46,7 @@ export class ProductEditComponent implements OnInit {
     }
   }
 
-  cancel(): void { // Public method for navigation
+  cancel(): void {
     this.router.navigate(['/']);
   }
 }
