@@ -16,6 +16,9 @@ public class ProductDto {
         this.city = city;
     }
 
+    public ProductDto() {
+    }
+
     public Long getId() {
         return id;
     }

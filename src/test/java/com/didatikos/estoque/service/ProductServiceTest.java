@@ -1,6 +1,5 @@
 package com.didatikos.estoque.service;
 
-
 import com.didatikos.estoque.model.City;
 import com.didatikos.estoque.model.Product;
 import com.didatikos.estoque.model.dto.ProductDto;
@@ -12,7 +11,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,8 +20,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-@SpringBootTest
-public class ProductServiceTest {
+class ProductServiceTest {
+
+    @InjectMocks
+    private ProductService productService;
 
     @Mock
     private ProductRepository productRepository;
@@ -31,69 +31,77 @@ public class ProductServiceTest {
     @Mock
     private CityRepository cityRepository;
 
-    @InjectMocks
-    private ProductService productService;
-
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-//
-//    @Test
-//    public void testFindAll() {
-//        Product product = new Product(1L, "Product1", 100.0, 10, new City(1L, "City1", "State1", null));
-//        when(productRepository.findAll()).thenReturn(List.of(product));
-//
-//        List<ProductDto> products = productService.findAll();
-//
-//        assertEquals(1, products.size());
-//        assertEquals("Product1", products.get(0).getName());
-//    }
-//
-//    @Test
-//    public void testFindById() {
-//        Product product = new Product(1L, "Product1", 100.0, 10, new City(1L, "City1", "State1", null));
-//        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-//
-//        Optional<ProductDto> productDto = productService.findById(1L);
-//
-//        assertTrue(productDto.isPresent());
-//        assertEquals("Product1", productDto.get().getName());
-//    }
-//
-//    @Test
-//    public void testSave() {
-//        ProductDto productDto = new ProductDto("Product1", 100.0, 10, "City1");
-//        Product product = ProductMapper.toEntity(productDto);
-//        product.setId(1L);
-//        when(cityRepository.save(any(City.class))).thenReturn(new City(1L, "City1", "State1", null));
-//        when(productRepository.save(any(Product.class))).thenReturn(product);
-//
-//        ProductDto savedProduct = productService.save(productDto);
-//
-//        assertNotNull(savedProduct);
-//        assertEquals("Product1", savedProduct.getName());
-//    }
-//
-//    @Test
-//    public void testUpdateProduct() throws Exception {
-//        ProductDto productDto = new ProductDto("UpdatedProduct", 200.0, 20, "City1");
-//        Product product = new Product(1L, "Product1", 100.0, 10, new City(1L, "City1", "State1", null));
-//        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
-//        when(productRepository.save(any(Product.class))).thenReturn(product);
-//
-//        ProductDto updatedProduct = productService.updateProduct(1L, productDto);
-//
-//        assertNotNull(updatedProduct);
-//        assertEquals("UpdatedProduct", updatedProduct.getName());
-//    }
-//
-//    @Test
-//    public void testDeleteById() {
-//        doNothing().when(productRepository).deleteById(1L);
-//
-//        productService.deleteById(1L);
-//
-//        verify(productRepository, times(1)).deleteById(1L);
-//    }
+
+    @Test
+    void testFindAll() {
+        Product product = new Product(1L, "Product 1", 10.0, 5, new City());
+        when(productRepository.findAll()).thenReturn(List.of(product));
+
+        List<ProductDto> result = productService.findAll();
+
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals("Product 1", result.get(0).getName());
+    }
+
+    @Test
+    void testFindById() {
+        Product product = new Product(1L, "Product 1", 10.0, 5, new City());
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+
+        Optional<ProductDto> result = productService.findById(1L);
+
+        assertTrue(result.isPresent());
+        assertEquals("Product 1", result.get().getName());
+    }
+
+    @Test
+    void testSaveProduct() {
+        ProductDto productDto = new ProductDto(null, "Product 1", 10.0, 5, "City 1");
+        Product product = ProductMapper.toEntity(productDto);
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+
+        ProductDto savedProduct = productService.save(productDto);
+
+        assertNotNull(savedProduct);
+        assertEquals("Product 1", savedProduct.getName());
+    }
+
+    @Test
+    void testUpdateProduct() throws Exception {
+        Product product = new Product(1L, "Product 1", 10.0, 5, new City(1L, "City 1", "State 1", null));
+        ProductDto productDto = new ProductDto(1L, "Updated Product", 15.0, 10, "City 1");
+        when(productRepository.findById(1L)).thenReturn(Optional.of(product));
+        when(productRepository.save(any(Product.class))).thenReturn(product);
+
+        ProductDto updatedProduct = productService.updateProduct(1L, productDto);
+
+        assertNotNull(updatedProduct);
+        assertEquals("Updated Product", updatedProduct.getName());
+        assertEquals(15.0, updatedProduct.getValue());
+    }
+
+    @Test
+    void testUpdateProductThrowsException() {
+        when(productRepository.findById(1L)).thenReturn(Optional.empty());
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            productService.updateProduct(1L, new ProductDto());
+        });
+
+        assertEquals("Product not found", exception.getMessage());
+    }
+
+    @Test
+    void testDeleteById() {
+        doNothing().when(productRepository).deleteById(1L);
+
+        productService.deleteById(1L);
+
+        verify(productRepository, times(1)).deleteById(1L);
+    }
 }
