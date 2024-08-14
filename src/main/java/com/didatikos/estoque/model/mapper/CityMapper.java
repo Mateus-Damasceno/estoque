@@ -25,7 +25,8 @@ public class CityMapper {
         return new CityDto(
                 productDtos,
                 city.getState(),
-                city.getName()
+                city.getName(),
+                city.getId()
         );
     }
 

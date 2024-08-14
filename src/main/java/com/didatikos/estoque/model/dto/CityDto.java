@@ -5,18 +5,28 @@ import java.util.List;
 
 public class CityDto {
 
+    private Long id;
     private String name;
     private String state;
     private List<ProductDto> products;
 
-    public CityDto(List<ProductDto> products, String state, String name) {
+    public CityDto(List<ProductDto> products, String state, String name, Long id) {
         this.products = products;
         this.state = state;
         this.name = name;
+        this.id = id;
     }
 
     public CityDto() {
 
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
