@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; // Importe o RouterModule
-import { ProductService } from '../services/product.service';
-import { ProductDto } from '../models/product.dto';
+import { ProductService } from '../../services/product.service';
+import { ProductDto } from '../../models/product.dto';
 
 @Component({
   selector: 'app-product-list',

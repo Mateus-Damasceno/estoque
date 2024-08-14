@@ -1,5 +1,7 @@
 <div class="container">
   <h2>Lista de Produtos</h2>
+  <a [routerLink]="['/product/new']" class="btn btn-success">Add New Product</a>
+  <a [routerLink]="['cities']" class="btn btn-success">Listar Cidades</a>
   <table class="table table-striped">
     <thead>
     <tr>
@@ -27,5 +29,6 @@
     </tr>
     </tbody>
   </table>
-  <a [routerLink]="['/product/new']" class="btn btn-success">Add New Product</a>
+
+
 </div>

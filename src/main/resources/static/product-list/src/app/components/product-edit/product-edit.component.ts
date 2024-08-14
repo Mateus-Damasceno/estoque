@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from '../services/product.service';
-import { ProductDto } from '../models/product.dto';
+import { ProductService } from '../../services/product.service';
+import { ProductDto } from '../../models/product.dto';
 import { FormsModule } from '@angular/forms';
 
 @Component({

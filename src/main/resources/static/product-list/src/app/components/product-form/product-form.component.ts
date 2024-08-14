@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ProductService } from '../services/product.service';
-import { ProductDto } from '../models/product.dto';
+import { ProductService } from '../../services/product.service';
+import { ProductDto } from '../../models/product.dto';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
