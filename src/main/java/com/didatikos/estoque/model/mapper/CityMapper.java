@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class CityMapper {
 
-    // Converte de City para CityDto
     public static CityDto toDto(City city) {
         if (city == null) {
             return null;
@@ -30,7 +29,7 @@ public class CityMapper {
         );
     }
 
-    // Converte de CityDto para City
+
     public static City toEntity(CityDto cityDto) {
         if (cityDto == null) {
             return null;

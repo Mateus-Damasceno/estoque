@@ -2,17 +2,14 @@ package com.didatikos.estoque.service;
 
 import com.didatikos.estoque.model.City;
 import com.didatikos.estoque.model.dto.CityDto;
-import com.didatikos.estoque.model.mapper.CityMapper;
 import com.didatikos.estoque.repository.CityRepository;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

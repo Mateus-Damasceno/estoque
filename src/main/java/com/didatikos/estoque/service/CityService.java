@@ -4,11 +4,11 @@ import com.didatikos.estoque.model.City;
 import com.didatikos.estoque.model.dto.CityDto;
 import com.didatikos.estoque.model.mapper.CityMapper;
 import com.didatikos.estoque.repository.CityRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
