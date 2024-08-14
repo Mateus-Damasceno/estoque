@@ -15,6 +15,7 @@ public class ProductMapper {
         String cityName = product.getCity() != null ? product.getCity().getName() : null;
 
         return new ProductDto(
+                product.getId(),
                 product.getName(),
                 product.getValue(),
                 product.getStock(),
@@ -29,13 +30,14 @@ public class ProductMapper {
         }
 
         Product product = new Product();
+        product.setId(productDto.getId());
         product.setName(productDto.getName());
         product.setValue(productDto.getValue());
         product.setStock(productDto.getStock());
 
-        if (productDto.getCityDto() != null) {
+        if (productDto.getCity() != null) {
             City city = new City();
-            city.setName(productDto.getCityDto());
+            city.setName(productDto.getCity());
             product.setCity(city);
         }
 

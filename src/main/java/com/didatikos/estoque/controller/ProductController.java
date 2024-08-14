@@ -9,17 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
+
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @RequestMapping(value = "/{[path:[^\\.]*}")
-    public String redirect() {
-        // Redireciona todas as requisições para o index.html
-        return "forward:/index.html";
-    }
+
     @GetMapping
     public List<ProductDto> getAllProducts() {
         return productService.findAll();
